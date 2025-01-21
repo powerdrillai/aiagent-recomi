@@ -1,0 +1,18 @@
+{
+  "name": "recomi-sdk",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build:dev": "tsc && vite build --watch",
+    "build:pro": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@recomi/eslint-config": "workspace:*",
+    "@recomi/typescript-config": "workspace:*",
+    "typescript": "^5.0.2",
+    "vite": "^5.0.0",
+    "@types/node": "^20.0.0"
+  }
+}

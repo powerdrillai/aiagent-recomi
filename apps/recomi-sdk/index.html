@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Embed SDK Demo</title>
+  </head>
+  <body>
+    <h1>Embed SDK Demo</h1>
+    <p>This page demonstrates the embed SDK functionality.</p>
+
+    <script>
+      (function () {
+        const onLoad = function () {
+          console.log("onLoad");
+          
+          const script = document.createElement("script");
+          script.src = "./dist/embed.umd.cjs";
+          script.id = "d7OGBJylbRz2o01jTzm-t";
+          script.domain = "www.recomi.co";
+          document.body.appendChild(script);
+        };
+        if (document.readyState === "complete") {
+          onLoad();
+        } else {
+          window.addEventListener("load", onLoad);
+        }
+      })();
+    </script>
+  </body>
+</html>
