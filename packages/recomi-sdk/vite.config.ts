@@ -11,7 +11,7 @@ export default defineConfig({
     lib: {
       entry: "src/index.ts",
       name: "RecomiSDK",
-      fileName: "embed",
+      fileName: "Recomi",
     },
     sourcemap: true, // 输出.map文件
   },

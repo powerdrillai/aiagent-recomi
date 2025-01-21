@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recomi SDK Demo</title>
+  </head>
+  <body>
+    <h1>Recomi SDK Demo</h1>
+    <p>This page demonstrates the Recomi SDK functionality.</p>
+
+    <script>
+      (function () {
+        const onLoad = function () {
+          console.log("onLoad");
+
+          const script = document.createElement("script");
+          script.src = "./dist/Recomi.umd.cjs";
+          // 这里使用的时候，需要用户去妥善管理，例如vite是使用环境变量
+          script.setAttribute("USER_ID", "tmm-cm5xo80cn05mw01l1zul3n5ib");
+          script.setAttribute(
+            "API_KEY",
+            "proj_sk_eJxLzNZNzjWtrDApqkg2MDPNMDDMMbQ0M8s3LktOtzI0NzY3MDA3MDK0NDKwci6pyA3yr9I3riiJ9E0ujKrwMnStDPeMsiwONCg1iQj1DisyDq8wSMwo8AQAdQMa0g"
+          );
+          script.setAttribute("domain", "https://aiagent-recomi.vercel.app/");
+          document.body.appendChild(script);
+        };
+
+        if (document.readyState === "complete") {
+          onLoad();
+        } else {
+          window.addEventListener("load", onLoad);
+        }
+      })();
+    </script>
+  </body>
+</html>

@@ -1,6 +1,6 @@
-# Embed SDK
+# Recomi SDK
 
-A lightweight SDK for embedding an iframe-based application into any website with a floating action button.
+A lightweight SDK for Recomiding an iframe-based application into any website with a floating action button.
 
 ## Installation
 
@@ -13,7 +13,7 @@ Add the following script to your website:
       console.log("onLoad");
 
       const script = document.createElement("script");
-      script.src = "./dist/embed.umd.cjs";
+      script.src = "./dist/Recomi.umd.cjs";
       script.id = "d7OGBJylbRz2o01jTzm-t";
       script.domain = "www.recomi.co";
       document.body.appendChild(script);

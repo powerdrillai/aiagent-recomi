@@ -1,10 +1,15 @@
 {
-  "name": "recomi-sdk",
+  "name": "@recomi/recomi-sdk",
   "version": "1.0.0",
   "type": "module",
+  "types": "./src/types/index.ts",
+  "exports": {
+    ".": "./src/types/index.ts"
+  },
   "scripts": {
     "dev": "vite",
-    "build:dev": "tsc && vite build --watch",
+    "pro": "vite --mode production",
+    "build:dev": "tsc && vite build --mode development --watch",
     "build:pro": "tsc && vite build",
     "preview": "vite preview"
   },
