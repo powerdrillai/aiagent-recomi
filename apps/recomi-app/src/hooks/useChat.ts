@@ -64,8 +64,6 @@ export const useChat = (): UseChatReturn => {
         block,
         type: curContent?.type || newContent.type,
       });
-
-      console.log(contents);
     } else {
       contents.push(newContent);
     }
