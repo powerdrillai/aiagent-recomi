@@ -8,10 +8,8 @@ import axios from "axios";
 
 // 基础配置，url和超时时间
 const baseConfig: AxiosRequestConfig = {
+  baseURL: import.meta.env.VITE_BASEURL,
   timeout: 60000,
-  headers: {
-    credentials: "include", // 默认请求是否带上cookie
-  },
 };
 
 export class Request {
@@ -26,7 +24,6 @@ export class Request {
     this.instance.interceptors.request.use(
       (conf: any) => {
         const cloneConf = { ...conf };
-        cloneConf.baseURL = "/openApi";
         // 添加通用header
         cloneConf.headers = {
           ...cloneConf.headers,

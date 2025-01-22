@@ -1,10 +1,10 @@
 {
   "extends": "@recomi/typescript-config/vite.json",
-  "include": ["src", "global.d.ts"],
+  "include": ["src", "src/types/global.d.ts"],
   "compilerOptions": {
     "jsx": "preserve",
     "baseUrl": ".",
-    "types": ["./global.d.ts"],
+    "types": ["./src/types/global.d.ts"],
     "paths": {
       "@/*": ["src/*"]
     }

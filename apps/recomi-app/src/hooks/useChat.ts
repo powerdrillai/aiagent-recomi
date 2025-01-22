@@ -1,5 +1,5 @@
 import { fetchEventSource } from "@microsoft/fetch-event-source";
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 
 import {
   type CreateJobData,
@@ -7,6 +7,7 @@ import {
   JobMode,
   LanguageType,
 } from "@/api/chat";
+import RecomiContext from "@/components/Context/RecomiContext";
 import type { ContentBlock } from "@/types";
 import { ChatConfig, ContentType, Message, MessageAuthor } from "@/types/chat";
 import { deduplicateArray } from "@/utils/array";
@@ -19,6 +20,8 @@ interface UseChatReturn {
 }
 
 export const useChat = (): UseChatReturn => {
+  const RecomiConfig = useContext(RecomiContext);
+
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "welcome",
@@ -61,8 +64,6 @@ export const useChat = (): UseChatReturn => {
         block,
         type: curContent?.type || newContent.type,
       });
-
-      console.log(contents);
     } else {
       contents.push(newContent);
     }
@@ -123,6 +124,10 @@ export const useChat = (): UseChatReturn => {
   };
 
   const sendMessage = async (text: string) => {
+    if (!RecomiConfig) {
+      console.error("unexpected lack of RecomiConfig");
+      return;
+    }
     const contents: ContentBlock[] = [];
     if (!text.trim() || isLoading) return;
 
@@ -164,14 +169,14 @@ export const useChat = (): UseChatReturn => {
       };
 
       await fetchEventSource(
-        "/openApi/jobs?userId=tmm-cm5xo80cn05mw01l1zul3n5ib",
+        `${import.meta.env.VITE_BASEURL}/jobs?userId=tmm-cm5xo80cn05mw01l1zul3n5ib`,
         {
           method: "POST",
           headers: {
             Accept: "*/*",
             "Content-Type": "application/json",
             "Keep-Alive": "timeout=300",
-            "x-pd-api-key": import.meta.env.VITE_API_KEY || "",
+            "x-pd-api-key": RecomiConfig.API_KEY,
           },
           body: JSON.stringify({
             question: text,
