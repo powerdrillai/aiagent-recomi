@@ -182,6 +182,7 @@ export const useChat = (): UseChatReturn => {
             question: text,
             sessionId: sessionId || curSessionID,
             answerConfig: config,
+            datasetId: import.meta.env.VITE_DATASET_ID,
             stream: true,
           } as CreateJobData),
           signal: abortControllerRef.current.signal,

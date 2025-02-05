@@ -15,7 +15,7 @@
           console.log("onLoad");
 
           const script = document.createElement("script");
-          script.src = "./dist/Recomi.umd.cjs";
+          script.src = "./dist/RecomiSDK.umd.cjs";
           // 这里使用的时候，需要用户去妥善管理，例如vite是使用环境变量
           script.setAttribute("USER_ID", import.meta.env.VITE_USER_ID);
           script.setAttribute("API_KEY", import.meta.env.VITE_API_KEY);
