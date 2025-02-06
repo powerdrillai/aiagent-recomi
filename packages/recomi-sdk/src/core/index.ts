@@ -3,7 +3,7 @@ import { RecomiEeventMsg, RecomiState } from "@/types";
 export class Recomi {
   public isInitialized: boolean = false;
   public showApp: boolean = false;
-  public chatAppIframeId: string | undefined;
+  public recomiAppIframeId: string | undefined;
   private API_KEY: string | undefined;
   private USER_ID: string | undefined;
   private static instance: Recomi;
@@ -49,11 +49,11 @@ export class Recomi {
       : RecomiState.NOT_INITIALIZED;
   }
 
-  public bindIframe(chatAppIframeId: string) {
-    this.chatAppIframeId = chatAppIframeId;
+  public bindIframe(recomiAppIframeId: string) {
+    this.recomiAppIframeId = recomiAppIframeId;
     this.changeAppVisiblity();
 
-    const targetIframe = window.frames[import.meta.env.VITE_CHATAPP_IFRAMEID];
+    const targetIframe = window.frames[import.meta.env.VITE_RECOMIAPP_IFRAMEID];
 
     targetIframe.onload = () => {
       const targetWindow = (targetIframe as any).contentWindow;
@@ -75,22 +75,22 @@ export class Recomi {
 
   public changeAppVisiblity() {
     this.showApp = !this.showApp;
-    console.log(this.showApp, this.chatAppIframeId);
+    console.log(this.showApp, this.recomiAppIframeId);
 
-    if (this.chatAppIframeId) {
-      const chatAppIframe = document.getElementById(this.chatAppIframeId);
-      if (!chatAppIframe) {
+    if (this.recomiAppIframeId) {
+      const recomiAppIframe = document.getElementById(this.recomiAppIframeId);
+      if (!recomiAppIframe) {
         console.warn("unexpected unexisted ");
         return;
       } else {
         if (this.showApp) {
-          chatAppIframe.style.visibility = "visible";
+          recomiAppIframe.style.visibility = "visible";
         } else {
-          chatAppIframe.style.visibility = "hidden";
+          recomiAppIframe.style.visibility = "hidden";
         }
       }
     } else {
-      console.warn("lack of chatAppIframeId");
+      console.warn("lack of recomiAppIframeId");
     }
   }
 }

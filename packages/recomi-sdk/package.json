@@ -2,6 +2,7 @@
   "name": "@recomi/recomi-sdk",
   "version": "1.0.0",
   "type": "module",
+  "main": "./src/index.ts",
   "types": "./src/types/index.ts",
   "exports": {
     ".": "./src/types/index.ts"

@@ -6,7 +6,7 @@ import {
   createSession,
   JobMode,
   LanguageType,
-} from "@/api/chat";
+} from "@/apis/chat";
 import RecomiContext from "@/components/Context/RecomiContext";
 import type { ContentBlock } from "@/types";
 import { ChatConfig, ContentType, Message, MessageAuthor } from "@/types/chat";
@@ -182,6 +182,7 @@ export const useChat = (): UseChatReturn => {
             question: text,
             sessionId: sessionId || curSessionID,
             answerConfig: config,
+            datasetId: import.meta.env.VITE_DATASET_ID,
             stream: true,
           } as CreateJobData),
           signal: abortControllerRef.current.signal,
