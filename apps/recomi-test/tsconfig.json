@@ -3,6 +3,7 @@
   "include": ["src"],
   "compilerOptions": {
     "jsx": "react-jsx",
+    "allowImportingTsExtensions": true,
     "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"]
