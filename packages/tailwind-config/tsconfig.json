@@ -1,5 +1,5 @@
 {
-  "extends": "@recomi/typescript-config/nextjs.json",
+  "extends": "@recomi/typescript-config/vite.json",
   "compilerOptions": {
     "outDir": "dist"
   },

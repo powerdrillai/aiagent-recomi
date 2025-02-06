@@ -8,8 +8,6 @@
 │   └── recomi-app              # recomi前端应用
 │       ├── src                 # 源代码
 │       │   ├── components      # 组件文件夹
-│       │   │   ├── ChatBot.tsx # 聊天机器人组件
-│       │   │   └── ChatWindow  # 聊天窗口相关组件
 │       │   ├── hooks           # 自定义 Hooks
 │       │   ├── App.tsx         # 应用主文件
 │       │   ├── main.tsx        # 应用入口文件
@@ -19,6 +17,8 @@
 │       ├── package.json        # 应用配置
 │       ├── tsconfig.json       # TypeScript 配置
 │       ├── vite.config.ts      # Vite 配置
+│   └── recomi-test             # recomi测试项目
+│   └── recomi-configuration    # recomi配置平台前端项目
 ├── packages                    # 内部共享包
 │   ├── eslint-config           # ESLint 配置包
 │   ├── recomi-sdk              # recomi SDK 包

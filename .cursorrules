@@ -1,0 +1,42 @@
+# Project Background
+This is a multi-package repository for Turborepo, responsible for implementing the Recomi chatbot functionality.
+
+# Coding Standards
+- Use functional components and Hooks, avoiding class components.
+- Use TypeScript to provide type support for all components and utilities.
+- Follow the style guides of
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended" for code formatting.
+- Use descriptive variable and function names.
+- Use double quotes.
+- Leave blank lines between code snippets and modules.
+
+# Package Management Tool
+- Use pnpm.
+
+# Preferred Libraries
+- Use Tailwind for styling.
+- Use shadcn-ui for styled components, without introducing additional component libraries.
+
+# File Structure
+- components: Reusable UI components.
+- pages: Page components.
+- hooks: Custom Hooks.
+- utils: Utility functions.
+- types: Type definitions.
+- apis: Request interfaces.
+
+# Performance Optimization Guidelines
+- Use React.memo for pure functional components.
+- Implement lazy loading for route components.
+- Optimize useEffect dependencies to prevent unnecessary re-renders.
+
+# Documentation Standards
+- Use JSDoc format for function and component comments.
+- Each main directory must contain a README.md file.
+- Provide both English and Chinese versions of the README.md file.
+
+# Error Handling
+- Use try/catch blocks to handle asynchronous operations.
+- Implement a global error boundary component.

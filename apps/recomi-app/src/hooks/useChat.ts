@@ -6,7 +6,7 @@ import {
   createSession,
   JobMode,
   LanguageType,
-} from "@/api/chat";
+} from "@/apis/chat";
 import RecomiContext from "@/components/Context/RecomiContext";
 import type { ContentBlock } from "@/types";
 import { ChatConfig, ContentType, Message, MessageAuthor } from "@/types/chat";
