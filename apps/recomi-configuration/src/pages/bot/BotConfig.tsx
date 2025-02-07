@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { type Bot, getBotById } from "../../apis/bot";
+import BotSettings from "../../components/bot/BotSettings";
+import BotUsage from "../../components/bot/BotUsage";
 import { Button } from "../../components/ui/Button";
 import { Card } from "../../components/ui/Card";
 import { Tabs } from "../../components/ui/Tabs";
 import { useMessage } from "../../hooks/useMessage";
-import BotSettings from "./components/BotSettings";
-import BotUsage from "./components/BotUsage";
 
 function BotConfig() {
   const { id } = useParams<{ id: string }>();
@@ -58,9 +58,11 @@ function BotConfig() {
     <div>
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Bot Configuration</h1>
-        <Button variant="secondary" onClick={() => navigate("/dashboard")}>
-          Back to Dashboard
-        </Button>
+        <div className="flex gap-4">
+          <Button variant="secondary" onClick={() => navigate("/dashboard")}>
+            Back to Dashboard
+          </Button>
+        </div>
       </div>
       <Card>
         <Tabs items={tabs} />

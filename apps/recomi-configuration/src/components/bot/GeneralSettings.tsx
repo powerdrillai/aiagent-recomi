@@ -1,19 +1,22 @@
 import JSEncrypt from "jsencrypt";
 import React from "react";
 
-import { type Bot, updateBot } from "@/apis/bot";
+import { Bot, updateBot } from "@/apis/bot";
 import { useMessage } from "@/hooks/useMessage";
 import { useAuthStore } from "@/stores/authStore";
 
-import { Button } from "../../../components/ui/Button";
-import { Input } from "../../../components/ui/Input";
+import { Button } from "../ui/Button";
+import { Input } from "../ui/Input";
 
-interface BotSettingsProps {
+interface GeneralSettingsProps {
   bot: Bot | null;
   onBotUpdate: (bot: Bot) => void;
 }
 
-const BotSettings: React.FC<BotSettingsProps> = ({ bot, onBotUpdate }) => {
+export const GeneralSettings: React.FC<GeneralSettingsProps> = ({
+  bot,
+  onBotUpdate,
+}) => {
   const { success, error } = useMessage();
   const { fetchPublicKey: getPublicKey } = useAuthStore();
 
@@ -59,13 +62,17 @@ const BotSettings: React.FC<BotSettingsProps> = ({ bot, onBotUpdate }) => {
   };
 
   return (
-    <div>
-      <h3 className="text-xl font-semibold mb-4">Bot Settings</h3>
+    <div className="bg-white rounded-lg shadow p-6">
+      <h3 className="text-xl font-semibold mb-6">General</h3>
       <form onSubmit={handleSubmit} className="space-y-6">
-        <p className="text-sm text-gray-500">
-          Please note: For security reasons, you need to re-enter the API Key
-          and other fields each time you update.
+        <p className="text-sm text-gray-500 bg-gray-50 p-4 rounded-lg border border-gray-200 font-bold">
+          Please note:
+          <p className="font-light">
+            For security reasons, you need to re-enter the API Key and other
+            fields each time you update.
+          </p>
         </p>
+
         <Input
           label="Bot Name"
           name="name"
@@ -96,7 +103,7 @@ const BotSettings: React.FC<BotSettingsProps> = ({ bot, onBotUpdate }) => {
           placeholder="Enter dataset ID"
         />
 
-        <div className="flex justify-end">
+        <div className="flex justify-end pt-4 border-t">
           <Button type="submit" variant="primary">
             Save Changes
           </Button>
@@ -105,5 +112,3 @@ const BotSettings: React.FC<BotSettingsProps> = ({ bot, onBotUpdate }) => {
     </div>
   );
 };
-
-export default BotSettings;

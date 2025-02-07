@@ -42,21 +42,21 @@ function BotInit() {
         throw new Error("unkonwn err");
       }
 
-      await createBot({
+      const bot = await createBot({
         name: formData.get("name") as string,
         secretkey: encryptedSecretKey,
       });
 
-      success("Bot created successfully!");
-      navigate("/dashboard");
+      success("Bot创建成功！");
+      navigate(`/bot/${bot.id}/config`);
     } catch (err) {
-      error(err instanceof Error ? err.message : "Failed to create bot");
+      error(err instanceof Error ? err.message : "创建bot失败");
     }
   };
 
   return (
     <div className="max-w-2xl mx-auto">
-      <h1 className="text-2xl font-bold mb-6">Create New Bot</h1>
+      <h1 className="text-2xl font-bold mb-6">创建新Bot</h1>
 
       <Card>
         <form onSubmit={handleSubmit} className="space-y-6 p-6">

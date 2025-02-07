@@ -32,7 +32,7 @@ function Login() {
   );
 
   return (
-    <Card className="w-full max-w-md mx-auto">
+    <Card className="w-full max-w-md mx-auto my-40">
       <h1 className="text-2xl font-bold text-center mb-6">Login</h1>
 
       <form onSubmit={handleSubmit} className="space-y-6">
