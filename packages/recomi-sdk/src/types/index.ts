@@ -11,11 +11,10 @@ export interface Recomi {
   isInitialized: boolean;
   showApp: boolean;
   chatAppIframeId?: string;
-  init: (API_KEY: string, USER_ID: string) => void;
+  SECRET_KEY?: string;
+  init: (SECRET_KEY: string) => void;
   getState: () => RecomiState;
   bindIframe: (chatAppIframeId: string) => void;
-  setPrivateProperty: (API_KEY: string, USER_ID: string) => void;
-  getPrivateProperty: () => { API_KEY: string; USER_ID: string };
   changeAppVisiblity: () => void;
 }
 

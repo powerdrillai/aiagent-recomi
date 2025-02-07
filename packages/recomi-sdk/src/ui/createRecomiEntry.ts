@@ -3,10 +3,10 @@ import { RecomiState } from "@/types";
 
 import createRecomiApp from "./createRecomiApp";
 
-const handleEntryClick = (API_KEY: string, USER_ID: string) => {
+const handleEntryClick = (SECRET_KEY: string) => {
   if (!window.recomi || window.recomi.getState() !== RecomiState.INITIALIZED) {
     window.recomi = new Recomi();
-    window.recomi.init(API_KEY, USER_ID);
+    window.recomi.init(SECRET_KEY);
     createRecomiApp();
   } else {
     console.log("Already initialized");
@@ -14,7 +14,7 @@ const handleEntryClick = (API_KEY: string, USER_ID: string) => {
   }
 };
 
-export default function createRecomiEntry(API_KEY: string, USER_ID: string) {
+export default function createRecomiEntry(SECRET_KEY: string) {
   // 按钮样式
   const entryStyles: Partial<CSSStyleDeclaration> = {
     width: "3.5rem",
@@ -49,9 +49,7 @@ export default function createRecomiEntry(API_KEY: string, USER_ID: string) {
   `;
 
   // 绑定点击事件
-  recomiEntry.addEventListener("click", () =>
-    handleEntryClick(API_KEY, USER_ID),
-  );
+  recomiEntry.addEventListener("click", () => handleEntryClick(SECRET_KEY));
 
   // 添加按钮到页面
   document.body.appendChild(recomiEntry);

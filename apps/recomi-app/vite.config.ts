@@ -11,10 +11,10 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      "/openApi": {
-        target: "http://10.107.0.210:3300/api/v1/team",
+      "/api": {
+        target: "http://localhost:3000/chat/",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/openApi/, ""),
+        rewrite: (path) => path.replace(/^\/api/, ""),
       },
     },
   },

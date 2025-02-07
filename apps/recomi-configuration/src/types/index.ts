@@ -33,34 +33,6 @@ export interface Profile {
   updated_at: string;
 }
 
-// Bot Types
-export interface Bot {
-  id: string;
-  user_id: string;
-  name: string;
-  description?: string;
-  api_key: string;
-  dataset_id: string;
-  status: "active" | "inactive" | "error";
-  created_at: string;
-  updated_at: string;
-}
-
-export interface BotCreationData {
-  userId: string;
-  name: string;
-  description?: string;
-  apiKey: string;
-  datasetId: string;
-}
-
-export interface BotUpdateData {
-  id: string;
-  name?: string;
-  description?: string;
-  status?: Bot["status"];
-}
-
 // Theme Types
 export interface ThemeState {
   isDarkMode: boolean;

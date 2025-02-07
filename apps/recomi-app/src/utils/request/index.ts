@@ -23,11 +23,12 @@ export class Request {
     // 请求拦截器
     this.instance.interceptors.request.use(
       (conf: any) => {
+        console.log(window.recomi);
         const cloneConf = { ...conf };
         // 添加通用header
         cloneConf.headers = {
           ...cloneConf.headers,
-          "x-pd-api-key": import.meta.env.VITE_API_KEY,
+          Authorization: `Bearer ${window.recomi.SECRET_KEY}`,
         };
         return cloneConf;
       },

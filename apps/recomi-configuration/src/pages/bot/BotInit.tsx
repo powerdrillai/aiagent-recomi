@@ -1,29 +1,62 @@
+import JSEncrypt from "jsencrypt";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+import { createBot } from "../../apis/bot";
 import { Button } from "../../components/ui/Button";
 import { Card } from "../../components/ui/Card";
 import { Input } from "../../components/ui/Input";
 import { useMessage } from "../../hooks/useMessage";
+import { useAuthStore } from "../../stores/authStore";
 
 function BotInit() {
   const navigate = useNavigate();
   const { success, error } = useMessage();
+  const { fetchPublicKey: getPublicKey } = useAuthStore();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+
     try {
-      // TODO: Implement bot creation
-      success("Bot created successfully!");
-      navigate("/dashboard");
+      const apiKey = formData.get("apiKey");
+      const userId = formData.get("userid");
+      const datasetId = formData.get("datasetId");
+
+      // 确保类型安全
+      if (
+        typeof apiKey !== "string" ||
+        typeof userId !== "string" ||
+        typeof datasetId !== "string"
+      ) {
+        throw new Error("Invalid input types");
+      }
+
+      // 拼接字符串并加密
+      const secretKeyString = `${apiKey}+${userId}+${datasetId}`;
+      const encrypt = new JSEncrypt();
+      const publicKey = await getPublicKey();
+      encrypt.setPublicKey(publicKey);
+      const encryptedSecretKey = encrypt.encrypt(secretKeyString);
+      if (!encryptedSecretKey) {
+        throw new Error("unkonwn err");
+      }
+
+      const bot = await createBot({
+        name: formData.get("name") as string,
+        secretkey: encryptedSecretKey,
+      });
+
+      success("Bot创建成功！");
+      navigate(`/bot/${bot.id}/config`);
     } catch (err) {
-      error(err instanceof Error ? err.message : "Failed to create bot");
+      error(err instanceof Error ? err.message : "创建bot失败");
     }
   };
 
   return (
     <div className="max-w-2xl mx-auto">
-      <h1 className="text-2xl font-bold mb-6">Create New Bot</h1>
+      <h1 className="text-2xl font-bold mb-6">创建新Bot</h1>
 
       <Card>
         <form onSubmit={handleSubmit} className="space-y-6 p-6">
@@ -35,17 +68,18 @@ function BotInit() {
           />
 
           <Input
-            label="Description"
-            name="description"
-            placeholder="Enter bot description"
-          />
-
-          <Input
             label="API Key"
             name="apiKey"
             type="password"
             required
             placeholder="Enter API key"
+          />
+
+          <Input
+            label="User ID"
+            name="userid"
+            required
+            placeholder="Enter user ID"
           />
 
           <Input

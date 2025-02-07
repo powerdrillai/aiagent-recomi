@@ -15,11 +15,9 @@
           console.log("onLoad");
 
           const script = document.createElement("script");
-          script.src = "https://aiagent-recomi.vercel.app/RecomiSDK.umd.cjs";
-          // 这里使用的时候，需要用户去妥善管理，例如vite是使用环境变量
-          script.setAttribute("USER_ID", import.meta.env.VITE_USER_ID);
-          script.setAttribute("API_KEY", import.meta.env.VITE_API_KEY);
-          script.setAttribute("domain", "https://aiagent-recomi.vercel.app/");
+          script.src = `${import.meta.env.VITE_RECOMI_ORIGIN}/RecomiSDK.umd.cjs`;
+          script.setAttribute("SECRET_KEY", "SxJNUyg8hyEbIt3OMnyQViEQJNYUKuuKq/8wgnuY9QbQq5tFY/Z17tAA1XX2pm7imhaQ1s6Jmd3IEoQWLOI9cZUNAxujxceWSGh5IUhH7FTb9iiEa4BGno2nik7RVc2OxA3nhVyw5NUQc4/HQ7Jjwd54cwQSv9JCtup4cx3J3UUwPtBmad1GI5laFXDCLqjHcz36BXDCzI/qBSh1TGi8MmBf0pFHXQUOcjEdYQzAGKgzbaSAVc/mhzrqashxCEDvhyqrmx5RHLFs2bF4IwIMS7nL01rMrNIB6sJ/sdYkZ9qIYY3SOvuJRplWPtbMDz8EnM3DGfGJJOSlnqcjrGh6Uw==");
+          script.setAttribute("domain", import.meta.env.VITE_RECOMI_ORIGIN);
           document.body.appendChild(script);
         };
 

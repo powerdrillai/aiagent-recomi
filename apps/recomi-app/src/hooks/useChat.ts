@@ -168,44 +168,40 @@ export const useChat = (): UseChatReturn => {
         modelGroup: "default",
       };
 
-      await fetchEventSource(
-        `${import.meta.env.VITE_BASEURL}/jobs?userId=tmm-cm5xo80cn05mw01l1zul3n5ib`,
-        {
-          method: "POST",
-          headers: {
-            Accept: "*/*",
-            "Content-Type": "application/json",
-            "Keep-Alive": "timeout=300",
-            "x-pd-api-key": RecomiConfig.API_KEY,
-          },
-          body: JSON.stringify({
-            question: text,
-            sessionId: sessionId || curSessionID,
-            answerConfig: config,
-            datasetId: import.meta.env.VITE_DATASET_ID,
-            stream: true,
-          } as CreateJobData),
-          signal: abortControllerRef.current.signal,
-          openWhenHidden: true,
-          credentials: "omit",
-          onmessage: (e) => handleStreamMessage(e, contents),
-          onerror(error) {
-            console.error("Stream error:", error);
-            updateLastMessage((msg) => ({
-              ...msg,
-              content: [
-                {
-                  type: ContentType.ERROR,
-                  block: "An error occurred while processing your request.",
-                },
-              ],
-              loading: false,
-            }));
-            setIsLoading(false);
-            throw Error(error);
-          },
+      await fetchEventSource(`${import.meta.env.VITE_BASEURL}/jobs`, {
+        method: "POST",
+        headers: {
+          Accept: "*/*",
+          "Content-Type": "application/json",
+          "Keep-Alive": "timeout=300",
+          Authorization: `Bearer ${RecomiConfig.SECRET_KEY}`,
         },
-      );
+        body: JSON.stringify({
+          question: text,
+          sessionId: sessionId || curSessionID,
+          answerConfig: config,
+          stream: true,
+        } as CreateJobData),
+        signal: abortControllerRef.current.signal,
+        openWhenHidden: true,
+        credentials: "omit",
+        onmessage: (e) => handleStreamMessage(e, contents),
+        onerror(error) {
+          console.error("Stream error:", error);
+          updateLastMessage((msg) => ({
+            ...msg,
+            content: [
+              {
+                type: ContentType.ERROR,
+                block: "An error occurred while processing your request.",
+              },
+            ],
+            loading: false,
+          }));
+          setIsLoading(false);
+          throw Error(error);
+        },
+      });
     } catch (error) {
       console.error("Chat error:", error);
       setIsLoading(false);

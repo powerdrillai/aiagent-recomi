@@ -13,13 +13,6 @@ export default function RecomiProvider({ children }: IRecomiProvider) {
   const [recomiConfig, setRecomiConfig] = useState<RecomiConfig>();
 
   useEffect(() => {
-    if (window.recomi) {
-      const config = window.recomi?.getPrivateProperty() as RecomiConfig;
-      if (config) {
-        setRecomiConfig(config);
-      }
-    }
-
     const handleMessage = (event: MessageEvent<any>) => {
       if (
         event?.data?.message &&
@@ -27,10 +20,10 @@ export default function RecomiProvider({ children }: IRecomiProvider) {
       ) {
         const { config } = event.data;
         console.log("Received message:", config);
-        // TODO 尽量都要按照sdk的导出枚举写，不要写死
         if (config) {
           setRecomiConfig(config);
         }
+        window.recomi = config;
       }
     };
 
@@ -40,7 +33,7 @@ export default function RecomiProvider({ children }: IRecomiProvider) {
       setRecomiConfig(undefined);
       window.removeEventListener("message", handleMessage);
     };
-  }, [window.recomi]);
+  }, []);
 
   return (
     <RecomiContext.Provider value={recomiConfig || null}>
