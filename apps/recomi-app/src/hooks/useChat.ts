@@ -174,7 +174,7 @@ export const useChat = (): UseChatReturn => {
           Accept: "*/*",
           "Content-Type": "application/json",
           "Keep-Alive": "timeout=300",
-          Authorization: `Bearer ${RecomiConfig.API_KEY}`,
+          Authorization: `Bearer ${RecomiConfig.SECRET_KEY}`,
         },
         body: JSON.stringify({
           question: text,

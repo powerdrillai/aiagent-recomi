@@ -9,7 +9,7 @@ if (typeof window !== "undefined") {
     console.log(script);
 
     // 根据拿到的id、domain去初始化就好了
-    console.log(script?.getAttribute("API_KEY"));
+    console.log(script?.getAttribute("SECRET_KEY"));
     console.log(script?.getAttribute("domain"));
 
     // TODO 从配置平台Fetch Config for Recomi
@@ -23,7 +23,7 @@ if (typeof window !== "undefined") {
       recomiDiv.id = "recomi-root"; // 可以设置一个 ID
       document.body.appendChild(recomiDiv);
 
-      createRecomiEntry(script?.getAttribute("API_KEY") || "");
+      createRecomiEntry(script?.getAttribute("SECRET_KEY") || "");
     }
 
     // Initialize recomi on window load

@@ -20,7 +20,6 @@ export default function RecomiProvider({ children }: IRecomiProvider) {
       ) {
         const { config } = event.data;
         console.log("Received message:", config);
-        // TODO 尽量都要按照sdk的导出枚举写，不要写死
         if (config) {
           setRecomiConfig(config);
         }

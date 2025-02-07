@@ -28,7 +28,7 @@ export class Request {
         // 添加通用header
         cloneConf.headers = {
           ...cloneConf.headers,
-          Authorization: `Bearer ${window.recomi.API_KEY}`,
+          Authorization: `Bearer ${window.recomi.SECRET_KEY}`,
         };
         return cloneConf;
       },

@@ -4,7 +4,7 @@ export class Recomi {
   public isInitialized: boolean = false;
   public showApp: boolean = false;
   public recomiAppIframeId: string | undefined;
-  public API_KEY: string | undefined;
+  public SECRET_KEY: string | undefined;
   private static instance: Recomi;
 
   constructor() {}
@@ -16,7 +16,7 @@ export class Recomi {
     return Recomi.instance;
   }
 
-  public init(API_KEY: string): void {
+  public init(SECRET_KEY: string): void {
     console.log("TODO 执行init");
 
     if (this.isInitialized) {
@@ -24,7 +24,7 @@ export class Recomi {
       return;
     }
 
-    this.API_KEY = API_KEY;
+    this.SECRET_KEY = SECRET_KEY;
     this.isInitialized = true;
   }
 
@@ -47,12 +47,12 @@ export class Recomi {
       const data = {
         message: RecomiEeventMsg.RECOMI_SDK_INITIALIZED,
         config: {
-          API_KEY: this.API_KEY,
+          SECRET_KEY: this.SECRET_KEY,
         },
       };
 
       if (targetWindow) {
-        console.log(targetWindow, this.API_KEY);
+        console.log(targetWindow, this.SECRET_KEY);
 
         const targetOrigin = import.meta.env.VITE_RECOMI_ORIGIN;
         console.log(targetOrigin);

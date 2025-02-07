@@ -1,3 +1,3 @@
 export interface RecomiConfig {
-  API_KEY: string;
+  SECRET_KEY: string;
 }
