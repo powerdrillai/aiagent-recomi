@@ -1,33 +1,44 @@
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
+
+import type { Bot } from "@/apis/bot";
 
 import { Button } from "../../../components/ui/Button";
 import { useMessage } from "../../../hooks/useMessage";
 
-const codeExample = `
-const bot = new ConfigBot({
-  apiKey: 'your-api-key',
-  userId: 'your-user-id',
-  datasetId: 'your-dataset-id'
-});
+interface BotUsageProps {
+  bot: Bot | null;
+}
 
-// Initialize the bot
-await bot.init();
-
-// Start processing
-const result = await bot.process({
-  input: 'Your input here'
-});
-`;
-
-function BotUsage() {
+function BotUsage({ bot }: BotUsageProps) {
   const { success } = useMessage();
+
+  const codeExample = `
+    <script>
+      (function () {
+        const onLoad = function () {
+          const script = document.createElement("script");
+          script.src = "https://aiagent-recomi.vercel.app/RecomiSDK.umd.cjs";
+          script.setAttribute("BOT_ID", ${bot?.id});
+          script.setAttribute("SECRET_KEY", ${bot?.secretkey});
+          script.setAttribute("domain", "https://aiagent-recomi.vercel.app/");
+          document.body.appendChild(script);
+        };
+
+        if (document.readyState === "complete") {
+          onLoad();
+        } else {
+          window.addEventListener("load", onLoad);
+        }
+      })();
+    </script>
+  `;
 
   const copyCode = useCallback(() => {
     navigator.clipboard.writeText(codeExample.trim());
     success("Code copied to clipboard!");
-  }, [success]);
+  }, [success, codeExample]);
 
   return (
     <div>
@@ -57,7 +68,12 @@ function BotUsage() {
       <h4 className="text-xl font-semibold mt-6 mb-4">Documentation</h4>
       <p>
         For more detailed information, please refer to our{" "}
-        <a href="#" className="text-blue-600 hover:underline">
+        <a
+          href="#"
+          className="text-blue-600 hover:underline"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           comprehensive documentation
         </a>
         .

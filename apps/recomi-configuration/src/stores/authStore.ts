@@ -19,6 +19,17 @@ type AuthStore = {
   login: (data: LoginData) => Promise<void>;
   register: (data: RegisterData) => Promise<void>;
   logout: () => Promise<void>;
+  fetchPublicKey: () => Promise<string>;
+};
+
+const internalFetchPublicKey = async (get: any, set: any) => {
+  const { publicKey } = get();
+  if (!publicKey) {
+    const newPublicKey = await getPublicKey();
+    set({ publicKey: newPublicKey });
+    return newPublicKey;
+  }
+  return publicKey;
 };
 
 export const useAuthStore = create<AuthStore>((set, get) => ({
@@ -41,13 +52,12 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
     }
   },
 
-  login: async ({ username, password }: LoginData) => {
-    let { publicKey } = get();
+  fetchPublicKey: async () => {
+    return await internalFetchPublicKey(get, set);
+  },
 
-    if (!publicKey) {
-      publicKey = await getPublicKey();
-      set({ publicKey });
-    }
+  login: async ({ username, password }: LoginData) => {
+    const publicKey = await internalFetchPublicKey(get, set);
 
     const encrypt = new JSEncrypt();
     encrypt.setPublicKey(publicKey);

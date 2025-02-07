@@ -58,7 +58,7 @@ function MainLayout() {
           </ul>
         </nav>
 
-        <main className="flex-1 p-6">
+        <main className="flex-1 p-6 h-[calc(100vh-4rem)] overflow-scroll">
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
             <Outlet />
           </div>

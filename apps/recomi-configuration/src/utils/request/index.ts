@@ -40,8 +40,6 @@ export class Request {
     // 响应拦截器
     this.instance.interceptors.response.use(
       async (response: AxiosResponse<BaseResponse<any>>) => {
-        console.log(response);
-
         const { data } = response;
         // { code: 0, data: T, msg: '' }
         // 标准响应结构体，返回data.data
@@ -58,6 +56,13 @@ export class Request {
         }
         if (response) {
           console.error(response?.statusText);
+          // 处理401错误
+          if (response.status === 401) {
+            // 清除本地存储的token
+            localStorage.removeItem("auth-token");
+            // 跳转到登录页面
+            window.location.href = "/login"; // 根据你的路由配置调整路径
+          }
         }
         return Promise.reject(error);
       },

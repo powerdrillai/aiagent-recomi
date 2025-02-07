@@ -4,8 +4,7 @@ export class Recomi {
   public isInitialized: boolean = false;
   public showApp: boolean = false;
   public recomiAppIframeId: string | undefined;
-  private API_KEY: string | undefined;
-  private USER_ID: string | undefined;
+  public API_KEY: string | undefined;
   private static instance: Recomi;
 
   constructor() {}
@@ -17,19 +16,7 @@ export class Recomi {
     return Recomi.instance;
   }
 
-  public setPrivateProperty(API_KEY: string, USER_ID: string) {
-    this.API_KEY = API_KEY;
-    this.USER_ID = USER_ID;
-  }
-
-  public getPrivateProperty() {
-    return {
-      API_KEY: this.API_KEY,
-      USER_ID: this.USER_ID,
-    };
-  }
-
-  public init(API_KEY: string, USER_ID: string): void {
+  public init(API_KEY: string): void {
     console.log("TODO 执行init");
 
     if (this.isInitialized) {
@@ -37,7 +24,7 @@ export class Recomi {
       return;
     }
 
-    this.setPrivateProperty(API_KEY, USER_ID);
+    this.API_KEY = API_KEY;
     this.isInitialized = true;
   }
 
@@ -59,11 +46,13 @@ export class Recomi {
       const targetWindow = (targetIframe as any).contentWindow;
       const data = {
         message: RecomiEeventMsg.RECOMI_SDK_INITIALIZED,
-        config: this.getPrivateProperty(),
+        config: {
+          API_KEY: this.API_KEY,
+        },
       };
 
       if (targetWindow) {
-        console.log(targetWindow, this.getPrivateProperty());
+        console.log(targetWindow, this.API_KEY);
 
         const targetOrigin = import.meta.env.VITE_RECOMI_ORIGIN;
         console.log(targetOrigin);
