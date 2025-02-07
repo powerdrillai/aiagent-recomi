@@ -1,13 +1,16 @@
 import React, { useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+import { type RegisterData } from "@/apis/auth";
+import { useAuthStore } from "@/stores/authStore";
+
 import { Button } from "../../components/ui/Button";
 import { Card } from "../../components/ui/Card";
 import { Input } from "../../components/ui/Input";
 import { useMessage } from "../../hooks/useMessage";
-import type { RegisterData } from "../../types";
 
 function Register() {
+  const { register } = useAuthStore();
   const navigate = useNavigate();
   const { success, error } = useMessage();
 
@@ -22,7 +25,7 @@ function Register() {
       };
 
       try {
-        // TODO: Implement actual API call
+        await register(data);
         success("Registration successful!");
         navigate("/login");
       } catch (err) {

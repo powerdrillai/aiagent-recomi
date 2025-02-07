@@ -17,7 +17,7 @@ function Login() {
       e.preventDefault();
       const formData = new FormData(e.currentTarget);
       const credentials: LoginCredentials = {
-        email: formData.get("email") as string,
+        username: formData.get("email") as string,
         password: formData.get("password") as string,
       };
 
@@ -39,7 +39,6 @@ function Login() {
         <Input
           label="Email"
           name="email"
-          type="email"
           required
           placeholder="Enter your email"
         />
