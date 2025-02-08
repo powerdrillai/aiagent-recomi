@@ -4,8 +4,8 @@ import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 import type { Bot } from "@/apis/bot";
 
-import { Button } from "../ui/Button";
 import { useMessage } from "../../hooks/useMessage";
+import { Button } from "../ui/Button";
 
 interface BotUsageProps {
   bot: Bot | null;

@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { type Bot, getBotById } from "../../apis/bot";
-import BotSettings from "../../components/bot/BotSettings";
-import BotUsage from "../../components/bot/BotUsage";
-import { Button } from "../../components/ui/Button";
-import { Card } from "../../components/ui/Card";
-import { Tabs } from "../../components/ui/Tabs";
-import { useMessage } from "../../hooks/useMessage";
+import { type Bot, getBotById } from "@/apis/bot";
+import BotPlayground from "@/components/bot/BotPlayground";
+import BotSettings from "@/components/bot/BotSettings";
+import BotUsage from "@/components/bot/BotUsage";
+import { Button, Card, Tabs } from "@/components/ui";
+import { useMessage } from "@/hooks/useMessage";
 
 function BotConfig() {
   const { id } = useParams<{ id: string }>();
@@ -42,6 +41,11 @@ function BotConfig() {
   }
 
   const tabs = [
+    {
+      key: "playground",
+      label: "Playground",
+      children: <BotPlayground bot={bot} />,
+    },
     {
       key: "usage",
       label: "Usage",
