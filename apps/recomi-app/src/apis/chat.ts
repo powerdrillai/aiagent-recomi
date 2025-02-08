@@ -161,8 +161,5 @@ export enum ModelGroup {
   Default = "default",
 }
 
-export const createSession = (CreateSessionData: CreateSessionData) =>
-  request.post<ChatSession>("/sessions", {
-    ...CreateSessionData,
-    userId: import.meta.env.VITE_USER_ID,
-  });
+export const createSession = (createSessionData: CreateSessionData) =>
+  request.post<ChatSession>("/sessions", createSessionData);
