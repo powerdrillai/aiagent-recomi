@@ -20,8 +20,8 @@ function BotUsage({ bot }: BotUsageProps) {
         const onLoad = function () {
           const script = document.createElement("script");
           script.src = "https://aiagent-recomi-app.vercel.app/RecomiSDK.umd.cjs";
-          script.setAttribute("BOT_ID", ${bot?.id});
-          script.setAttribute("SECRET_KEY", ${bot?.secretkey});
+          script.setAttribute("BOT_ID", "${bot?.id}");
+          script.setAttribute("SECRET_KEY", "${bot?.secretkey}");
           script.setAttribute("domain", "https://aiagent-recomi-app.vercel.app/");
           document.body.appendChild(script);
         };

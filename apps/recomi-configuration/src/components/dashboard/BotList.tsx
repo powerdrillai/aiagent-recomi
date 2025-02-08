@@ -10,7 +10,7 @@ interface BotListProps {
 
 export const BotList = ({ bots, isLoading, onConfigureBot }: BotListProps) => (
   <div className="space-y-6">
-    <h2 className="text-2xl font-semibold">聊天机器人</h2>
+    <h2 className="text-2xl font-semibold">ChatBot</h2>
     {isLoading ? (
       <LoadingSpinner />
     ) : (
@@ -43,7 +43,7 @@ export const BotList = ({ bots, isLoading, onConfigureBot }: BotListProps) => (
               <div className="flex flex-col items-center">
                 <h3 className="text-lg font-semibold">{bot.name}</h3>
                 <p className="text-sm text-gray-500">
-                  创建于 {new Date(bot.createdAt).toLocaleDateString()}
+                  Created on {new Date(bot.createdAt).toLocaleDateString()}
                 </p>
               </div>
             </div>
@@ -51,7 +51,7 @@ export const BotList = ({ bots, isLoading, onConfigureBot }: BotListProps) => (
         ))}
         {bots.length === 0 && (
           <div className="col-span-full text-center py-12">
-            <p className="text-gray-500">暂无聊天机器人</p>
+            <p className="text-gray-500">No chatbots available</p>
           </div>
         )}
       </div>
