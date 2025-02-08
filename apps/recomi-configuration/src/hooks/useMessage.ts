@@ -19,8 +19,9 @@ export function useMessage() {
       root.unmount();
       container.remove();
     };
+    console.log(handleClose, config);
 
-    // ts err
+    // TODO ts err
     // root.render(
     //   <Toast
     //     message={config.message}
