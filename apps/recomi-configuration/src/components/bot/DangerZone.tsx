@@ -15,9 +15,9 @@ export const DangerZone: React.FC<DangerZoneProps> = ({ bot }) => {
   const { success, error } = useMessage();
 
   const handleDeleteBot = async () => {
-    if (!bot?.id) return;
+    if (!bot?._id) return;
     try {
-      await deleteBot(bot?.id);
+      await deleteBot(bot?._id);
       success("Bot deleted successfully");
       navigate("/dashboard");
     } catch (err) {

@@ -44,11 +44,11 @@ function BotInit() {
 
       const bot = await createBot({
         name: formData.get("name") as string,
-        secretkey: encryptedSecretKey,
+        secretKey: encryptedSecretKey,
       });
 
       success("Bot创建成功！");
-      navigate(`/bot/${bot.id}/config`);
+      navigate(`/bot/${bot._id}/config`);
     } catch (err) {
       error(err instanceof Error ? err.message : "创建bot失败");
     }

@@ -17,9 +17,9 @@ export const BotList = ({ bots, isLoading, onConfigureBot }: BotListProps) => (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {bots.map((bot) => (
           <Card
-            key={bot.id}
+            key={bot._id}
             className="cursor-pointer hover:shadow-lg transition-shadow"
-            onClick={() => onConfigureBot(bot.id)}
+            onClick={() => onConfigureBot(bot._id)}
           >
             <div className="p-2 space-y-2">
               <div className="flex justify-center">

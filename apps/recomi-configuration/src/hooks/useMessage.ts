@@ -1,4 +1,4 @@
-import { useToast } from "./useToast";
+import { enqueueSnackbar } from "notistack";
 
 // type ToastType = "success" | "error" | "warning" | "info";
 
@@ -8,13 +8,14 @@ import { useToast } from "./useToast";
 // }
 
 export function useMessage() {
-  const { toast } = useToast();
   // TODO 没时间改了。。。
 
   return {
-    success: (message: string) => toast({ title: message }),
-    error: (message: string) => toast({ title: message }),
-    warning: (message: string) => toast({ title: message }),
-    info: (message: string) => toast({ title: message }),
+    success: (message: string) =>
+      enqueueSnackbar(message, { variant: "success" }),
+    error: (message: string) => enqueueSnackbar(message, { variant: "error" }),
+    warning: (message: string) =>
+      enqueueSnackbar(message, { variant: "warning" }),
+    info: (message: string) => enqueueSnackbar(message, { variant: "info" }),
   };
 }

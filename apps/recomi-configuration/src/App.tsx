@@ -1,3 +1,4 @@
+import { SnackbarProvider } from "notistack";
 import { useEffect } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
@@ -30,23 +31,30 @@ function App() {
 
   return (
     <div className={isDarkMode ? "dark" : ""}>
-      <BrowserRouter>
-        <Routes>
-          <Route element={<AuthLayout />}>
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-          </Route>
+      <SnackbarProvider
+        anchorOrigin={{
+          horizontal: "center",
+          vertical: "top",
+        }}
+      >
+        <BrowserRouter>
+          <Routes>
+            <Route element={<AuthLayout />}>
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+            </Route>
 
-          <Route element={<MainLayout />}>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/bot/create" element={<BotInit />} />
-            <Route path="/bot/:id/config" element={<BotConfig />} />
-          </Route>
+            <Route element={<MainLayout />}>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/bot/create" element={<BotInit />} />
+              <Route path="/bot/:id/config" element={<BotConfig />} />
+            </Route>
 
-          <Route path="/" element={<Navigate to="/dashboard" replace />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </SnackbarProvider>
     </div>
   );
 }
