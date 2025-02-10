@@ -3,8 +3,8 @@ import SyntaxHighlighter from "react-syntax-highlighter";
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 import type { Bot } from "@/apis/bot";
+import { useToast } from "@/hooks/useToast";
 
-import { useMessage } from "../../hooks/useMessage";
 import { Button } from "../ui/Button";
 
 interface BotUsageProps {
@@ -12,7 +12,7 @@ interface BotUsageProps {
 }
 
 function BotUsage({ bot }: BotUsageProps) {
-  const { success } = useMessage();
+  const { toast } = useToast();
 
   const codeExample = `
     <script>
@@ -37,8 +37,8 @@ function BotUsage({ bot }: BotUsageProps) {
 
   const copyCode = useCallback(() => {
     navigator.clipboard.writeText(codeExample.trim());
-    success("Code copied to clipboard!");
-  }, [success, codeExample]);
+    toast({ title: "Code copied to clipboard!" });
+  }, [codeExample]);
 
   return (
     <div>

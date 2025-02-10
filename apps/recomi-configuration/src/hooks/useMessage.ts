@@ -1,40 +1,20 @@
-import { useCallback } from "react";
-import { createRoot } from "react-dom/client";
+import { useToast } from "./useToast";
 
-type ToastType = "success" | "error" | "warning" | "info";
+// type ToastType = "success" | "error" | "warning" | "info";
 
-interface ToastConfig {
-  message: string;
-  type: ToastType;
-}
+// interface ToastConfig {
+//   message: string;
+//   type: ToastType;
+// }
 
 export function useMessage() {
-  const showToast = useCallback((config: ToastConfig) => {
-    const container = document.createElement("div");
-    document.body.appendChild(container);
-
-    const root = createRoot(container);
-
-    const handleClose = () => {
-      root.unmount();
-      container.remove();
-    };
-    console.log(handleClose, config);
-
-    // TODO ts err
-    // root.render(
-    //   <Toast
-    //     message={config.message}
-    //     type={config.type}
-    //     onClose={handleClose}
-    //   />
-    // );
-  }, []);
+  const { toast } = useToast();
+  // TODO 没时间改了。。。
 
   return {
-    success: (message: string) => showToast({ message, type: "success" }),
-    error: (message: string) => showToast({ message, type: "error" }),
-    warning: (message: string) => showToast({ message, type: "warning" }),
-    info: (message: string) => showToast({ message, type: "info" }),
+    success: (message: string) => toast({ title: message }),
+    error: (message: string) => toast({ title: message }),
+    warning: (message: string) => toast({ title: message }),
+    info: (message: string) => toast({ title: message }),
   };
 }
