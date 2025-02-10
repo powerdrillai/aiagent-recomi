@@ -3,8 +3,8 @@ import SyntaxHighlighter from "react-syntax-highlighter";
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 import type { Bot } from "@/apis/bot";
+import { useToast } from "@/hooks/useToast";
 
-import { useMessage } from "../../hooks/useMessage";
 import { Button } from "../ui/Button";
 
 interface BotUsageProps {
@@ -12,17 +12,17 @@ interface BotUsageProps {
 }
 
 function BotUsage({ bot }: BotUsageProps) {
-  const { success } = useMessage();
+  const { toast } = useToast();
 
   const codeExample = `
     <script>
       (function () {
         const onLoad = function () {
           const script = document.createElement("script");
-          script.src = "https://aiagent-recomi.vercel.app/RecomiSDK.umd.cjs";
-          script.setAttribute("BOT_ID", ${bot?.id});
-          script.setAttribute("SECRET_KEY", ${bot?.secretkey});
-          script.setAttribute("domain", "https://aiagent-recomi.vercel.app/");
+          script.src = "https://aiagent-recomi-app.vercel.app/RecomiSDK.umd.cjs";
+          script.setAttribute("BOT_ID", "${bot?._id}");
+          script.setAttribute("SECRET_KEY", "${bot?.secretKey}");
+          script.setAttribute("domain", "https://aiagent-recomi-app.vercel.app/");
           document.body.appendChild(script);
         };
 
@@ -37,8 +37,8 @@ function BotUsage({ bot }: BotUsageProps) {
 
   const copyCode = useCallback(() => {
     navigator.clipboard.writeText(codeExample.trim());
-    success("Code copied to clipboard!");
-  }, [success, codeExample]);
+    toast({ title: "Code copied to clipboard!" });
+  }, [codeExample]);
 
   return (
     <div>

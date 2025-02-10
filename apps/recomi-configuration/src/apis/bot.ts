@@ -2,18 +2,18 @@ import request from "@/utils/request";
 
 export interface CreateBotData {
   name: string;
-  secretkey?: string;
+  secretKey?: string;
 }
 
 export interface UpdateBotData {
   name?: string;
-  secretkey?: string;
+  secretKey?: string;
 }
 
 export interface Bot {
-  id: string;
+  _id: string;
   name: string;
-  secretkey?: string;
+  secretKey?: string;
   createdAt: string;
   updatedAt: string;
 }

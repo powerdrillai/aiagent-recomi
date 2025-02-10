@@ -10,16 +10,16 @@ interface BotListProps {
 
 export const BotList = ({ bots, isLoading, onConfigureBot }: BotListProps) => (
   <div className="space-y-6">
-    <h2 className="text-2xl font-semibold">聊天机器人</h2>
+    <h2 className="text-2xl font-semibold">ChatBot</h2>
     {isLoading ? (
       <LoadingSpinner />
     ) : (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {bots.map((bot) => (
           <Card
-            key={bot.id}
+            key={bot._id}
             className="cursor-pointer hover:shadow-lg transition-shadow"
-            onClick={() => onConfigureBot(bot.id)}
+            onClick={() => onConfigureBot(bot._id)}
           >
             <div className="p-2 space-y-2">
               <div className="flex justify-center">
@@ -43,7 +43,7 @@ export const BotList = ({ bots, isLoading, onConfigureBot }: BotListProps) => (
               <div className="flex flex-col items-center">
                 <h3 className="text-lg font-semibold">{bot.name}</h3>
                 <p className="text-sm text-gray-500">
-                  创建于 {new Date(bot.createdAt).toLocaleDateString()}
+                  Created on {new Date(bot.createdAt).toLocaleDateString()}
                 </p>
               </div>
             </div>
@@ -51,7 +51,7 @@ export const BotList = ({ bots, isLoading, onConfigureBot }: BotListProps) => (
         ))}
         {bots.length === 0 && (
           <div className="col-span-full text-center py-12">
-            <p className="text-gray-500">暂无聊天机器人</p>
+            <p className="text-gray-500">No chatbots available</p>
           </div>
         )}
       </div>

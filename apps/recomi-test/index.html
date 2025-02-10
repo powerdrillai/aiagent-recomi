@@ -6,27 +6,7 @@
     <title>Recomi SDK Demo</title>
   </head>
   <body>
-    <h1>Recomi SDK Demo</h1>
-    <p>This page demonstrates the Recomi SDK functionality.</p>
-
-    <script type="module">
-      (function () {
-        const onLoad = function () {
-          console.log("onLoad");
-
-          const script = document.createElement("script");
-          script.src = `${import.meta.env.VITE_RECOMI_ORIGIN}/RecomiSDK.umd.cjs`;
-          script.setAttribute("SECRET_KEY", "SxJNUyg8hyEbIt3OMnyQViEQJNYUKuuKq/8wgnuY9QbQq5tFY/Z17tAA1XX2pm7imhaQ1s6Jmd3IEoQWLOI9cZUNAxujxceWSGh5IUhH7FTb9iiEa4BGno2nik7RVc2OxA3nhVyw5NUQc4/HQ7Jjwd54cwQSv9JCtup4cx3J3UUwPtBmad1GI5laFXDCLqjHcz36BXDCzI/qBSh1TGi8MmBf0pFHXQUOcjEdYQzAGKgzbaSAVc/mhzrqashxCEDvhyqrmx5RHLFs2bF4IwIMS7nL01rMrNIB6sJ/sdYkZ9qIYY3SOvuJRplWPtbMDz8EnM3DGfGJJOSlnqcjrGh6Uw==");
-          script.setAttribute("domain", import.meta.env.VITE_RECOMI_ORIGIN);
-          document.body.appendChild(script);
-        };
-
-        if (document.readyState === "complete") {
-          onLoad();
-        } else {
-          window.addEventListener("load", onLoad);
-        }
-      })();
-    </script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

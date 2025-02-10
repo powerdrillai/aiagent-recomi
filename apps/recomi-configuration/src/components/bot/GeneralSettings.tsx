@@ -22,7 +22,7 @@ export const GeneralSettings: React.FC<GeneralSettingsProps> = ({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!bot?.id) return;
+    if (!bot?._id) return;
 
     const formData = new FormData(e.currentTarget);
 
@@ -50,9 +50,9 @@ export const GeneralSettings: React.FC<GeneralSettingsProps> = ({
     }
 
     try {
-      const updatedBot = await updateBot(bot?.id, {
+      const updatedBot = await updateBot(bot?._id, {
         name: formData.get("name") as string,
-        secretkey: encryptedSecretKey,
+        secretKey: encryptedSecretKey,
       });
       onBotUpdate(updatedBot);
       success("Bot updated successfully");
