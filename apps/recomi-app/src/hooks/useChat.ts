@@ -146,7 +146,7 @@ export const useChat = (): UseChatReturn => {
       if (!sessionId) {
         const session = await createSession({
           title: "New Chat",
-          languageType: LanguageType.ZhCN,
+          languageType: LanguageType.En,
           jobMode: JobMode.Auto,
         });
 
