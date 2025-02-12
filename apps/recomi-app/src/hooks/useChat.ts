@@ -104,19 +104,18 @@ export const useChat = (): UseChatReturn => {
           content: contents,
         }));
       } else if (event.event === ContentType.CODE && event.data !== "[DONE]") {
-        const { choices } = JSON.parse(event.data);
-        const { content } = choices?.[0]?.delta || {};
-
-        addContentToLastMessage(contents, {
-          type: ContentType.CODE,
-          block: content,
-        });
-
-        updateLastMessage((msg) => ({
-          ...msg,
-          loading: false,
-          content: contents,
-        }));
+        // TODO: 暂时隐藏CODE 类型的信息处理
+        // const { choices } = JSON.parse(event.data);
+        // const { content } = choices?.[0]?.delta || {};
+        // addContentToLastMessage(contents, {
+        //   type: ContentType.CODE,
+        //   block: content,
+        // });
+        // updateLastMessage((msg) => ({
+        //   ...msg,
+        //   loading: false,
+        //   content: contents,
+        // }));
       }
     } catch (error) {
       console.error("Error processing stream message:", error);
