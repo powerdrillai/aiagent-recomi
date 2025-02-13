@@ -103,21 +103,21 @@ export const useChat = (): UseChatReturn => {
           loading: false,
           content: contents,
         }));
-      } else if (event.event === ContentType.CODE && event.data !== "[DONE]") {
-        const { choices } = JSON.parse(event.data);
-        const { content } = choices?.[0]?.delta || {};
-
-        addContentToLastMessage(contents, {
-          type: ContentType.CODE,
-          block: content,
-        });
-
-        updateLastMessage((msg) => ({
-          ...msg,
-          loading: false,
-          content: contents,
-        }));
       }
+      // else if (event.event === ContentType.CODE && event.data !== "[DONE]") {
+      //   // TODO: 暂时隐藏CODE 类型的信息处理
+      //   // const { choices } = JSON.parse(event.data);
+      //   // const { content } = choices?.[0]?.delta || {};
+      //   // addContentToLastMessage(contents, {
+      //   //   type: ContentType.CODE,
+      //   //   block: content,
+      //   // });
+      //   // updateLastMessage((msg) => ({
+      //   //   ...msg,
+      //   //   loading: false,
+      //   //   content: contents,
+      //   // }));
+      // }
     } catch (error) {
       console.error("Error processing stream message:", error);
     }

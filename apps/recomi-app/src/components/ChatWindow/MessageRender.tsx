@@ -28,8 +28,10 @@ md.renderer.rules = {
     return `<${level} class="${classes[level as keyof typeof classes]}">`;
   },
 
-  link_open: () =>
-    '<a class="break-all underline" target="_blank" rel="noopener">',
+  link_open: (tokens, idx) => {
+    const href = tokens[idx].attrs?.[0]?.[1] || "";
+    return `<a href="${href}" class="break-all underline" target="_blank" rel="noopener">`;
+  },
 
   bullet_list_open: () => '<ul class="my-0.75 pl-0 list-disc">',
 
